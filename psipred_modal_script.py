@@ -6,8 +6,8 @@ import modal
 import argparse
 import subprocess
 # =============================================
-path_network = os.getcwd()+'r\s4pred'
-path_utilities = os.getcwd()+r'\s4pred'
+path_network = os.path.join(os.getcwd(), r's4pred')
+path_utilities = os.path.join(os.getcwd(), r's4pred')
 sys.path.append(path_network)
 sys.path.append(path_utilities)
 # =============================================

@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  diffusebioscript:
+    image: diffusebioscript
+    build:
+      context: .
+      dockerfile: ./Dockerfile
