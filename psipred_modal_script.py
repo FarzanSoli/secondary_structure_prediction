@@ -6,8 +6,6 @@ import modal
 import argparse
 import subprocess
 from modal import Image
-from pathlib import Path
-from modal import App, Volume
 # =============================================
 path_network = os.path.join(os.getcwd(), r's4pred')
 path_utilities = os.path.join(os.getcwd(), r's4pred')
@@ -29,7 +27,8 @@ sys.path.append(path_utilities)
 # 
 # @app.function(mounts=[input_text, output_directory])
 # =============================================================================
-
+# =============================================
+# @app.function()
 def psipred(input_text, output_directory):
     # Export FASTA file
     # open(output_directory, "w").close()
@@ -42,9 +41,7 @@ def psipred(input_text, output_directory):
             id_ = line[0]
             sequence = line[-1]
             out_file.write(f'>{id_}\n')
-            # Write sequence with line breaks every 100 characters
-            for i in range(0, len(sequence), 100):
-                out_file.write(sequence[i:i+100]+'\n')
+            out_file.write(sequence+'\n')
     # ------------------------------------------------
     # Specify the path to run_model.py
     run_model_path = os.path.join('s4pred', 'run_model.py')
