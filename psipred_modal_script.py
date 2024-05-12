@@ -28,7 +28,7 @@ sys.path.append(path_utilities)
 # @app.function(mounts=[input_text, output_directory])
 # =============================================================================
 # =============================================
-# @app.function()
+
 def psipred(input_text, output_directory):
     # Export FASTA file
     # open(output_directory, "w").close()
@@ -86,7 +86,7 @@ def psipred(input_text, output_directory):
         json.dump(proteins_info, file, indent=2)
 
 
-
+# -----------------------------------------------
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run psipred script")
     parser.add_argument("input_text", help="Path to input text file")
@@ -94,6 +94,3 @@ if __name__ == "__main__":
                         help="Path to output directory")
     args = parser.parse_args()
     psipred(args.input_text, args.output_directory)
-
-
-

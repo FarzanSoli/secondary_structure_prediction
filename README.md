@@ -10,7 +10,7 @@ docker build -t diffuse_bio_script .
 ----
 #### Directory of the input text file : ./test_psipred.txt
 #### Directory of the output secondary structure file : ./Secondary.fas
-docker run diffuse_bio_script ./test_psipred.txt ./Secondary.fas --num_processes 10
+docker run diffuse_bio_script ./test_psipred.txt ./Secondary.fas
 ----
 ### Modal Deploy
 ----
