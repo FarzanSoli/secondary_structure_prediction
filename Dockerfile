@@ -39,5 +39,4 @@ USER appuser
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 
 ENTRYPOINT ["python", "psipred_modal_script.py"]
-CMD []
-
+CMD ["./test_psipred.txt", "-o", "./Secondary_structure.fas"]
