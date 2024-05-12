@@ -5,8 +5,6 @@ docker build -t diffuse_bio_script .
 
 ### Run the app
 ----
-#### Directory of the input text file : ./test_psipred_dataset.txt
-#### Directory of the output secondary structure file : ./Secondary.fas
 docker run diffuse_bio_script ./test_psipred_dataset.txt ./Secondary.fas
 ----
 ### Modal Deploy
