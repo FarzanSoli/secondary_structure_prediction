@@ -43,7 +43,7 @@ def psipred(input_text, output_directory, args):
     command = [
         'python',        # Python interpreter
         run_model_path,  # Path to run_model.py
-        '--device', 'gpu',
+        '--device', 'cpu',
         '--outfmt', 'fas',
         fasta_file,     # Input FASTA file
         ]
@@ -89,11 +89,11 @@ def main():
                         help='Device to run on, Either: cpu or gpu (default; cpu).')
     parser.add_argument('-t','--outfmt', metavar='m', type=str, default='fas',
                         help='Output format, Either: ss2, fas, or horiz (default; fas).') 
-    parser.add_argument('-o','--output_directory', metavar='o', type=str, default = './results_ss.fas',
+    parser.add_argument('-o','--output_file', metavar='o', type=str, default = './Secondary_structure.fas',
                         help='Output directory to save the result file.') 
     # ----------------------------------------
     args = parser.parse_args()   
-    output_file = psipred(args.input_text_file, args.output_directory, args)
+    output_file = psipred(args.input_text_file, args.output_file, args)
 
    
 if __name__ == "__main__":
@@ -102,8 +102,5 @@ if __name__ == "__main__":
 # modal deploy psipred_modal_script.py ./s4pred/example/test_psipred_dataset.txt -o ./s4pred/example/Test_ss.fas
 # f = modal.Function.lookup("protein-secondary-structure")
 # f.remote()
-
-
-# python psipred_modal_script.py ./test_psipred.txt -o ./Secondary_structure.fas
 
 
