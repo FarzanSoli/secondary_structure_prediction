@@ -34,7 +34,7 @@ def psipred(input_text, output_directory):
     # open(output_directory, "w").close()
     fasta_file = os.path.splitext(input_text)[0] + '.fas'
     id_ = None
-    # Sequence_dict = {}
+    Sequence_dict = {}
     with open(input_text, 'r') as in_file, open(fasta_file, 'w') as out_file:
         for line in in_file:
             line = line.split('\t')
@@ -42,6 +42,7 @@ def psipred(input_text, output_directory):
             sequence = line[-1]
             out_file.write(f'>{id_}\n')
             out_file.write(sequence+'\n')
+            Sequence_dict[id_] = sequence
     # ------------------------------------------------
     # Specify the path to run_model.py
     run_model_path = os.path.join('s4pred', 'run_model.py')
