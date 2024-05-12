@@ -91,5 +91,4 @@ if __name__ == "__main__":
                         help="Path to output directory")
     args = parser.parse_args()
     psipred(args.input_text, args.output_directory)
-    
-    
+
