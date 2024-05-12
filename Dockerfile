@@ -17,8 +17,6 @@ RUN python -m pip install --upgrade pip setuptools wheel
 RUN python -m pip install -r requirements.txt
 
 WORKDIR /app
-# Copy s4pred folder into the Docker image
-COPY s4pred /app/s4pred
 COPY . /app
 COPY psipred_modal_script.py .
 
