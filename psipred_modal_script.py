@@ -14,12 +14,27 @@ path_utilities = os.path.join(os.getcwd(), r's4pred')
 sys.path.append(path_network)
 sys.path.append(path_utilities)
 # =============================================
+# =============================================================================
 # app = modal.App("protein-secondary-structure") 
+# 
+# input_text = modal.Mount.from_local_file(
+#     local_path=os.getcwd()+"/test_psipred.txt",
+#     remote_path="/root/test_psipred.txt",
+# )
+# 
+# output_directory = modal.Mount.from_local_file(
+#     local_path=os.getcwd()+'./Secondary_structure.fas',
+#     remote_path="/root/",
+# )
+# 
+# @app.function(mounts=[input_text, output_directory])
+# =============================================================================
 
 
-# @app.function()
+
 def psipred(input_text, output_directory):
     # Export FASTA file
+    # open(output_directory, "w").close()
     fasta_file = os.path.splitext(input_text)[0] + '.fas'
     id_ = None
     # Sequence_dict = {}
@@ -74,11 +89,11 @@ def psipred(input_text, output_directory):
     
     with open(output_directory, 'w') as file:
         json.dump(proteins_info, file, indent=2)
-    return None
+
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run PSIPRED script")
+    parser = argparse.ArgumentParser(description="Run psipred script")
     parser.add_argument("input_text", help="Path to input text file")
     parser.add_argument("output_directory", default = './Secondary_structure.fas', 
                         help="Path to output directory")
