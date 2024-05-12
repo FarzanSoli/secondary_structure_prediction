@@ -8,7 +8,7 @@ docker build -t diffuse_bio_script .
 docker run diffuse_bio_script ./test_psipred_dataset.txt ./Secondary.fas
 ```
 
-"./Secondary.fas" is the file under /app that stores the secondary structures. 
+"./test_psipred_dataset.txt" is the input text file and "./Secondary.fas" is the file under /app that stores the secondary structures. 
 
 ### Modal Deploy
 ----
