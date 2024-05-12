@@ -43,7 +43,7 @@ def psipred(input_text, output_directory, args):
     command = [
         'python',        # Python interpreter
         run_model_path,  # Path to run_model.py
-        '--device', 'cpu',
+        '--device', args.device,
         '--outfmt', 'fas',
         fasta_file,     # Input FASTA file
         ]
