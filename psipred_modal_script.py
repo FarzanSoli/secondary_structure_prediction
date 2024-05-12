@@ -2,10 +2,10 @@ import io
 import os
 import sys
 import json
-import shlex
 import modal
 import argparse
 import subprocess
+from modal import Image
 from pathlib import Path
 from modal import App, Volume
 # =============================================
@@ -24,13 +24,11 @@ sys.path.append(path_utilities)
 # 
 # output_directory = modal.Mount.from_local_file(
 #     local_path=os.getcwd()+'./Secondary_structure.fas',
-#     remote_path="/root/",
+#     remote_path="/root/Secondary_structure.fas",
 # )
 # 
 # @app.function(mounts=[input_text, output_directory])
 # =============================================================================
-
-
 
 def psipred(input_text, output_directory):
     # Export FASTA file
@@ -99,4 +97,6 @@ if __name__ == "__main__":
                         help="Path to output directory")
     args = parser.parse_args()
     psipred(args.input_text, args.output_directory)
+
+
 
