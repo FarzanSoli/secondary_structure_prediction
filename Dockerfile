@@ -17,14 +17,12 @@ RUN python -m pip install --upgrade pip setuptools wheel
 RUN python -m pip install -r requirements.txt
 
 # Clone the GitHub repository
-RUN git clone https://github.com/psipred/s4pred
-RUN cd s4pred
-# Download the file using curl
-RUN curl -O http://bioinfadmin.cs.ucl.ac.uk/downloads/s4pred/weights.tar.gz
-# Extract the downloaded file
-RUN tar -xvzf weights.tar.gz
-# Optionally, clean up the downloaded archive
-RUN rm weights.tar.gz
+RUN git clone https://github.com/psipred/s4pred \
+    && cd s4pred \
+    && curl -O http://bioinfadmin.cs.ucl.ac.uk/downloads/s4pred/weights.tar.gz \
+    && tar -xvzf weights.tar.gz \
+    && rm weights.tar.gz \
+    && touch __init__.py
 
 
 WORKDIR /app
