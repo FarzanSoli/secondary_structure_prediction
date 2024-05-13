@@ -3,10 +3,6 @@
 ```
 docker build -t diffuse_bio_script .
 ```
-### Run the app
-```
-docker run diffuse_bio_script ./test_psipred_dataset.txt ./Secondary.fas
-```
 ### Run multiple processes
 ```
 docker run diffuse_bio_script ./test_psipred_dataset.txt
