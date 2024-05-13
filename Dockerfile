@@ -18,7 +18,6 @@ RUN python -m pip install -r requirements.txt
 
 WORKDIR /app
 COPY . /app
-COPY psipred_modal_script.py .
 COPY psipred_parallel.py .
 
 # Clone the GitHub repository
