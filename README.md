@@ -7,12 +7,16 @@ docker build -t diffuse_bio_script .
 ```
 docker run diffuse_bio_script ./test_psipred_dataset.txt ./Secondary.fas
 ```
+### Run multiple processes
+```
+python psipred_modal_parallel.py ./test_psipred.txt
+```
 
 "./test_psipred_dataset.txt" is the input text file and "./Secondary.fas" is the file under /app that stores the secondary structures. 
 
 ### Modal Deploy
 ----
-Modal deploy and run require s4pred package installed, which is not resolved! 
+Modal deploy and run require s4pred package installed, which is not resolved!!
 
 ```
 modal run psipred_modal_script.py
