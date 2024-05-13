@@ -8,23 +8,20 @@ import subprocess
 import multiprocessing
 from modal import Image
 from multiprocessing import Pool
-# =============================================================================
-# app = modal.App("protein-secondary-structure") 
-# 
-# input_text = modal.Mount.from_local_file(
-#     local_path=os.getcwd()+"/test_psipred.txt",
-#     remote_path="/root/test_psipred.txt",
-# )
-# 
-# =============================================================================
+# =============================================
+app = modal.App("protein-secondary-structure") 
 
+input_text = modal.Mount.from_local_file(
+    local_path=os.getcwd()+"/test_psipred.txt",
+    remote_path="/root/test_psipred.txt",
+)
 # =============================================
 path_network = os.path.join(os.getcwd(), r's4pred')
 path_utilities = os.path.join(os.getcwd(), r's4pred')
 sys.path.append(path_network)
 sys.path.append(path_utilities)
 # =============================================
-# @app.function()
+@app.function()
 def process_fasta_file(i, fasta_file):
     run_model_path = os.path.join('s4pred', 'run_model.py')
     # Construct the command
@@ -40,7 +37,7 @@ def process_fasta_file(i, fasta_file):
     # Save the result
     return result
 # =============================================
-# @app.function(mounts=[input_text])
+@app.function(mounts=[input_text])
 def psipred(input_text):
     # Export FASTA file
     fasta_file = os.path.splitext(input_text)[0] + '.fas'
@@ -83,14 +80,14 @@ def psipred(input_text):
         file_list.append((i,'./'+ os.path.basename(fasta_files[i])))
     return file_list
 # =============================================
-# @app.function()
+@app.function()
 def save_as_fasta(filename, sequences):
     with open(filename, "w") as file:
         for i, sequence in enumerate(sequences):
             file.write(sequence + "\n")
 
 # =============================================
-# @app.local_entrypoint()
+@app.local_entrypoint()
 def main():
     parser = argparse.ArgumentParser(description="Run psipred script")
     parser.add_argument("input_text", help="Path to input text file")
@@ -102,14 +99,7 @@ def main():
     for i in range(len(file_list)): 
         save_as_fasta(file_list[i][1], 
                       [">" + x.strip() for x in [''.join(list(results[i].stdout))][0].split(">")[1:] if x.strip()])
-        
-# =============================================================================
-#         with open(file_list[i][1], 'w') as f:
-#             f.write(results[i])
-# =============================================================================
-    
-if __name__ == "__main__":
-    main()
+
 
 
 # modal run psipred_modal_script.py ./test_psipred_dataset.txt
