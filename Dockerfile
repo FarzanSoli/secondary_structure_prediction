@@ -19,6 +19,7 @@ RUN python -m pip install -r requirements.txt
 WORKDIR /app
 COPY . /app
 COPY psipred_modal_script.py .
+COPY psipred_parallel.py .
 
 # Clone the GitHub repository
 # Check if s4pred directory exists
@@ -37,5 +38,10 @@ USER appuser
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 
-ENTRYPOINT ["python", "psipred_modal_script.py"]
-CMD ["./Input_File.txt", "-o", "./Secondary_structure.fas"]
+# for psipred_modal_script.py .
+# ENTRYPOINT ["python", "psipred_modal_script.py"]
+# CMD ["./Input_File.txt", "-o", "./Secondary_structure.fas"]
+
+# for psipred_parallel.py .
+ENTRYPOINT ["python", "psipred_parallel.py"]
+CMD ["./Input_File.txt"]

@@ -9,7 +9,7 @@ docker run diffuse_bio_script ./test_psipred_dataset.txt ./Secondary.fas
 ```
 ### Run multiple processes
 ```
-python psipred_parallel.py ./test_psipred.txt
+docker run diffuse_bio_script ./test_psipred_dataset.txt
 ```
 
 "./test_psipred_dataset.txt" is the input text file and "./Secondary.fas" is the file under /app that stores the secondary structures. 
