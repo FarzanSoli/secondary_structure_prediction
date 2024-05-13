@@ -12,8 +12,8 @@ from multiprocessing import Pool
 app = modal.App("protein-secondary-structure") 
 
 input_text = modal.Mount.from_local_file(
-    local_path=os.getcwd()+"/test_psipred.txt",
-    remote_path="/root/test_psipred.txt",
+    local_path=os.getcwd()+"/test_psipred_dataset.txt",
+    remote_path="/root/test_psipred_dataset.txt",
 )
 # =============================================
 path_network = os.path.join(os.getcwd(), r's4pred')
@@ -21,7 +21,7 @@ path_utilities = os.path.join(os.getcwd(), r's4pred')
 sys.path.append(path_network)
 sys.path.append(path_utilities)
 # =============================================
-@app.function()
+
 def process_fasta_file(i, fasta_file):
     run_model_path = os.path.join('s4pred', 'run_model.py')
     # Construct the command
@@ -80,15 +80,14 @@ def psipred(input_text):
         file_list.append((i,'./'+ os.path.basename(fasta_files[i])))
     return file_list
 # =============================================
-@app.function()
+
 def save_as_fasta(filename, sequences):
     with open(filename, "w") as file:
         for i, sequence in enumerate(sequences):
             file.write(sequence + "\n")
 
 # =============================================
-@app.local_entrypoint()
-def main():
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run psipred script")
     parser.add_argument("input_text", help="Path to input text file")
     args = parser.parse_args()
@@ -99,9 +98,5 @@ def main():
     for i in range(len(file_list)): 
         save_as_fasta(file_list[i][1], 
                       [">" + x.strip() for x in [''.join(list(results[i].stdout))][0].split(">")[1:] if x.strip()])
-
-
-
-# modal run psipred_modal_script.py ./test_psipred_dataset.txt
 
 
