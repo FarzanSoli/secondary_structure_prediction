@@ -19,9 +19,10 @@ RUN python -m pip install -r requirements.txt
 WORKDIR /app
 COPY . /app
 COPY psipred_script.py .
+# COPY psipred_parallel.py .
 
-# Clone the GitHub repository
-# Check if s4pred directory exists
+## Clone the GitHub repository
+## Check if s4pred directory exists
 RUN if [ ! -d "/app/s4pred" ]; then \
         git clone https://github.com/psipred/s4pred && \
         cd s4pred && \
