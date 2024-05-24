@@ -2,31 +2,14 @@ import io
 import os
 import sys
 import json
-import modal
 import argparse
 import subprocess
-import multiprocessing
-from modal import Image
-from itertools import starmap
 # =============================================
 path_network = os.path.join(os.getcwd(), r's4pred')
 path_utilities = os.path.join(os.getcwd(), r's4pred')
 sys.path.append(path_network)
 sys.path.append(path_utilities)
 # =============================================
-app = modal.App("protein-secondary-structure") 
-
-input_text = modal.Mount.from_local_file(
-    local_path=os.getcwd()+"/test_psipred_dataset.txt",
-    remote_path="/root/test_psipred_dataset.txt",
-)
-
-output_directory = modal.Mount.from_local_file(
-    local_path=os.getcwd()+'./Secondary_structure.fas',
-    remote_path="/root/Secondary_structure.fas",
-)
-
-@app.function(mounts=[input_text, output_directory])
 def psipred(input_text, output_directory):
     # Export FASTA file
     fasta_file = os.path.splitext(input_text)[0] + '.fas'
@@ -82,7 +65,7 @@ def psipred(input_text, output_directory):
         json.dump(proteins_info, file, indent=2)
 
 # -----------------------------------------------
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="Run psipred script")
     parser.add_argument("input_text", help="Path to input text file")
     parser.add_argument("output_directory", default = './Secondary_structure.fas', 
@@ -90,3 +73,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     psipred(args.input_text, args.output_directory)
 
+if __name__ == "__main__":
+    main()
