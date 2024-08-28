@@ -68,7 +68,7 @@ def psipred(input_text, output_directory):
 def main():
     parser = argparse.ArgumentParser(description="Run psipred script")
     parser.add_argument("input_text", help="Path to input text file")
-    parser.add_argument("output_directory", default = './Secondary_structure.fas', 
+    parser.add_argument("output_directory", default = './Secondary_structure.ss2', 
                         help="Path to output directory")
     args = parser.parse_args()
     psipred(args.input_text, args.output_directory)
