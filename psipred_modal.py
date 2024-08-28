@@ -101,7 +101,7 @@ def main():
                         help='Device to run on, Either: cpu or gpu (default; cpu).')
     parser.add_argument('-t','--outfmt', metavar='m', type=str, default='fas',
                         help='Output format, Either: ss2, fas, or horiz (default; fas).') 
-    parser.add_argument('-o','--output_file', metavar='o', type=str, default = './Secondary_structure.fas',
+    parser.add_argument('-o','--output_file', metavar='o', type=str, default = './Secondary_structure.ss2',
                         help='Output directory to save the result file.') 
     # ----------------------------------------
     args = parser.parse_args()   
@@ -111,8 +111,8 @@ def main():
 if __name__ == "__main__":
     main()
 
-# modal deploy psipred_modal_script.py ./s4pred/example/test_psipred_dataset.txt -o ./s4pred/example/Test_ss.fas
+# modal deploy psipred_modal_script.py ./s4pred/example/test_psipred_dataset.txt -o ./s4pred/example/Test_ss.ss2
 # f = modal.Function.lookup("protein-secondary-structure", "psipred")
-# f.remote("./test_psipred.txt", "./Secondary_structure.fas")
+# f.remote("./test_psipred.txt", "./Secondary_structure.ss2")
 
 
